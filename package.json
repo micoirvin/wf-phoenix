@@ -1,8 +1,8 @@
 {
-  "name": "@micoirvin/webflow-dev-starter",
+  "name": "@micoirvin/wf-phoenix",
   "version": "1.0.0",
   "description": "Developer starter template for Webflow projects, based from Finsweet's open-source developer starter.",
-  "homepage": "https://github.com/micoirvin/webflow-dev-starter#readme",
+  "homepage": "https://github.com/micoirvin/wf-phoenix#readme",
   "license": "ISC",
   "keywords": [],
   "author": {
@@ -11,10 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/micoirvin/webflow-dev-starter.git"
+    "url": "git+https://github.com/micoirvin/wf-phoenix.git"
   },
   "bugs": {
-    "url": "https://github.com/micoirvin/webflow-dev-starter/issues"
+    "url": "https://github.com/micoirvin/wf-phoenix/issues"
   },
   "type": "module",
   "main": "src/index.ts",
