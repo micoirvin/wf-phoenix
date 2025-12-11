@@ -1,3 +1,9 @@
 export const removeFalsy = (arr) => {
-  return arr.filter((e) => e);
+  const filtered = arr.filter((e) => {
+    if (!e) return false;
+    if (e.length <= 0) return false;
+    return true;
+  });
+  console.log(arr, filtered);
+  return filtered;
 };

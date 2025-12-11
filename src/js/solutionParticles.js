@@ -2,7 +2,10 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-export const solutionsAnimatedFigures = () => {
+export const solutionParticles = () => {
+  let target = document.querySelector('.slides_wrap');
+  if (!target) return;
+  target = target.closest('section');
   function initCircleParticles() {
     // Generate particle elements dynamically
     const wrap = document.querySelector('.anim-particles.is-circle');
@@ -364,20 +367,29 @@ export const solutionsAnimatedFigures = () => {
   initWaveParticles();
 
   const toggle = (show) => {
-    const particles = document.querySelectorAll('.anim-particles');
+    const particles = document.querySelectorAll('.slides_particles-wrap');
     particles.forEach((p) => {
-      if (show) p.style.display = 'none';
-      else p.style.display = '';
+      if (show) p.style.display = '';
+      else p.style.display = 'none';
     });
   };
 
-  ScrollTrigger.create({
-    trigger: '.slides_wrap',
-    start: 'top top',
-    end: 'bottom top',
-    onEnter: () => toggle(true),
-    onEnterBack: () => toggle(true),
-    onLeave: () => toggle(false),
-    onLeaveBack: () => toggle(false),
-  });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          toggle(true);
+          console.log('yes particles');
+        } else if (entry.intersectionRatio === 0) {
+          toggle(false);
+          console.log('no particles');
+        }
+      });
+    },
+    {
+      threshold: [0.1],
+    }
+  );
+
+  observer.observe(target);
 };

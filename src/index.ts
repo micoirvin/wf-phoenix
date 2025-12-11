@@ -4,14 +4,29 @@ import { navColor } from './js/navColor';
 import { modals } from './js/modals';
 import { crosshairModals } from './js/crosshairModals';
 import { introAnim } from './js/introAnim';
+import { slidesAnim } from './js/slidesAnim';
+import { gsapBasicAnimations } from './js/gsapBasicAnimations';
+import { swiperSliders } from './js/swiperSliders';
+import { accordions } from './js/accordions';
+import { animCircles } from './js/animCircles';
+import { solutionParticles } from './js/solutionParticles';
 window.Webflow ||= [];
 window.Webflow.push(() => {
   const name = 'Phoenix';
   greetUser(name);
 
+  document.documentElement.classList.add('ready');
+
   introAnim();
   textSectionAnim();
+  solutionParticles();
+
   navColor();
   modals();
   crosshairModals();
+  slidesAnim();
+  gsapBasicAnimations();
+  swiperSliders();
+  accordions();
+  animCircles();
 });

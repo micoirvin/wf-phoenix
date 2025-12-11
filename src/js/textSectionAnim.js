@@ -16,14 +16,18 @@ export const textSectionAnim = () => {
     side = null,
     accentLine = null,
     accentIcon = null,
-    ignoreNotchGlowAttr = null
+    under = null,
+    ignoreNotchGlowAttr = null,
+    except = null
   ) {
     this.wrap = wrap;
     this.text = text;
     this.side = side;
     this.accentLine = accentLine;
     this.accentIcon = accentIcon;
+    this.under = under;
     this.ignoreNotchGlowAttr = ignoreNotchGlowAttr;
+    this.except = except;
   }
   const selectors = [
     new Selector(
@@ -32,9 +36,20 @@ export const textSectionAnim = () => {
       null,
       '.hero_accent-line',
       '.hero_accent-icon',
+      '.hero_image-wrap',
       '[data-wf--hero--variant="brand"]'
     ),
-    new Selector('.section', 'p[class*="heading-style"]', '.s-head-2_text', null, null),
+    new Selector('.section_hero-2', 'p[class*="heading-style"]', null, null, null, null, null),
+    new Selector(
+      '.section',
+      'p[class*="heading-style"], [section-heading]',
+      '[section-side]',
+      null,
+      null,
+      '[section-under]',
+      null,
+      '[swiper_outer]'
+    ),
   ];
 
   let tls = [];
@@ -53,13 +68,15 @@ export const textSectionAnim = () => {
   };
 
   const initAnimsPerWrap = (wrapEl, selector) => {
-    const { text, side, accentLine, accentIcon, ignoreNotchGlowAttr } = selector;
+    const { text, side, accentLine, accentIcon, under, ignoreNotchGlowAttr, except } = selector;
+    if (wrapEl.closest(except)) return;
     const textEl = wrapEl.querySelector(text);
     const sideEl = side ? wrapEl.querySelector(side) : null;
     const eyebrowTextEl = wrapEl.querySelector('.eyebrow .text-tag');
     const eyebrowIconEl = wrapEl.querySelector('.eyebrow_icon');
-    const accentLineEl = accentLine ? wrapEl.querySelectorAll(accentLine) : null;
-    const accentIconEl = accentIcon ? wrapEl.querySelectorAll(accentIcon) : null;
+    const accentLineEl = accentLine ? wrapEl.querySelector(accentLine) : null;
+    const accentIconEl = accentIcon ? wrapEl.querySelector(accentIcon) : null;
+    const underEl = under ? wrapEl.querySelector(under) : null;
 
     let split = new SplitText(textEl, {
       type: ['lines'],
@@ -86,6 +103,7 @@ export const textSectionAnim = () => {
         accentLineEl,
         accentIconEl,
         ...split.lines,
+        underEl,
       ]),
       {
         opacity: 0,
@@ -109,6 +127,7 @@ export const textSectionAnim = () => {
         // markers: true,
         toggleActions: 'play none none none',
         once: true,
+        anticipatePin: 1,
       },
     });
     tls.push(tl);
@@ -180,8 +199,16 @@ export const textSectionAnim = () => {
         },
         '-=0.3'
       );
+
     if (accentIconEl)
       tl.to(accentIconEl, {
+        opacity: 1,
+        ease: 'power3.in',
+        duration: 0.5,
+      });
+
+    if (underEl)
+      tl.to(underEl, {
         opacity: 1,
         ease: 'power3.in',
         duration: 0.5,
