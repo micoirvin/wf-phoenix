@@ -5,7 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const gsapBasicAnimations = () => {
   gsap.set('[anim-slide-in]', { y: 25, opacity: 0 });
-  ScrollTrigger.batch('[anim-slide=in]', {
+  ScrollTrigger.batch('[anim-slide-in]', {
     start: 'top center',
     onEnter: (batch: any) => gsap.to(batch, { opacity: 1, y: 0, duration: 1 }),
   });

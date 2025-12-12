@@ -11,13 +11,20 @@ export const navColor = () => {
   const selectors = '.section, section, [nav-color-include]';
   const sections = document.querySelectorAll(selectors);
   const nav = document.querySelector('.header .nav_bar');
+  const header = document.querySelector('.header');
 
   sections.forEach((section, i) => {
     if (section.hasAttribute('nav-color-ignore')) return;
     // if (section.classList.contains('section_intro')) return;
     const color = gsap.getProperty(section, 'color');
+    const borderColor = gsap.getProperty(section, '--color-scheme-1--border-grey');
     const change = () => {
       gsap.to(nav, { color: color, duration: 0.3, ease: 'power3.inOut' });
+      gsap.to([header, nav], {
+        '--color-scheme-1--border-grey': borderColor,
+        duration: 0.3,
+        ease: 'power3.inOut',
+      });
       debouncer(() => initialNavColorChange(color, section));
     };
     const elsWithTrans = nav.querySelectorAll('a, svg');

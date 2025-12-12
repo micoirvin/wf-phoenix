@@ -10,6 +10,7 @@ import { swiperSliders } from './js/swiperSliders';
 import { accordions } from './js/accordions';
 import { animCircles } from './js/animCircles';
 import { solutionParticles } from './js/solutionParticles';
+import { lineAnim } from './js/lineAnim';
 window.Webflow ||= [];
 window.Webflow.push(() => {
   const name = 'Phoenix';
@@ -29,4 +30,5 @@ window.Webflow.push(() => {
   swiperSliders();
   accordions();
   animCircles();
+  lineAnim();
 });
