@@ -1,5 +1,11 @@
 # @micoirvin/wf-phoenix
 
+## 1.0.4
+
+### Patch Changes
+
+- a904f68: part 4
+
 ## 1.0.3
 
 ### Patch Changes
