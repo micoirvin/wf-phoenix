@@ -18,17 +18,18 @@ window.Webflow.push(() => {
 
   document.documentElement.classList.add('ready');
 
-  introAnim();
-  textSectionAnim();
-  solutionParticles();
-
-  navColor();
-  modals();
-  crosshairModals();
-  slidesAnim();
-  gsapBasicAnimations();
-  swiperSliders();
-  accordions();
-  animCircles();
-  lineAnim();
+  setTimeout(() => {
+    introAnim();
+    textSectionAnim();
+    lineAnim();
+    animCircles();
+    gsapBasicAnimations();
+    navColor();
+    slidesAnim();
+    solutionParticles();
+    modals();
+    crosshairModals();
+    swiperSliders();
+    accordions();
+  }, 0);
 });

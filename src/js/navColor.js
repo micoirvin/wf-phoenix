@@ -38,6 +38,7 @@ export const navColor = () => {
       pin: false,
       onEnter: change,
       onEnterBack: change,
+      invalidateOnRefresh: true,
     });
     // change();
   });
